@@ -7,6 +7,12 @@ import { CommonModule } from '@angular/common';
 // ROUTER
 import { RouterOutlet } from '@angular/router';
 
+// import Components
+import { HeaderComponent } from './components/header/header.component';
+
+
+
+
 // imports for material ui angular that we need later
 // import {MatButtonModule} from '@angular/material/button';
 // MatSidenavModule
@@ -30,7 +36,11 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
 
   // import modul
-  imports: [CommonModule, RouterOutlet],
+  imports: [
+    CommonModule, 
+    RouterOutlet,
+    HeaderComponent
+  ],
 
   // Html Url or string to write
   templateUrl: './app.component.html',
