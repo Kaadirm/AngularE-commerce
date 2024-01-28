@@ -7,6 +7,7 @@
     </mat-drawer>
     <mat-drawer-content class="p-6">
       <button mat-raised-button (click)="draw.toggle(); toggleIcon()"><mat-icon >{{sideBarIcon}}</mat-icon></button>
+      <app-products-header (columnsCountUpdate)="onColumnsCountChange($event)"></app-products-header>
     </mat-drawer-content>
     
 </mat-drawer-container>
