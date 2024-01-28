@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 // import other components or pages
 import { ProductsHeaderComponent } from './components/products-header/products-header.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { ProductBoxComponent } from './components/product-box/product-box.component';
+
 
 // import for Mat UI
 import {MatSidenavModule} from "@angular/material/sidenav"
@@ -38,6 +40,7 @@ const ROWS_HEIGHT: {
     MatSidenavModule,
     MatIcon,
     MatGridListModule,
+    ProductBoxComponent,
   ],
 
   // Html url to select
