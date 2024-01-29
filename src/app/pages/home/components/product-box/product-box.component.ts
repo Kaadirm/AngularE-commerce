@@ -10,6 +10,7 @@ import { ProductModel } from '../../../../models/product.model';
 // import Material Angular
 import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
+import { HomeComponent } from '../../home.component';
 
 
 @Component({
@@ -23,7 +24,8 @@ import { MatIcon } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatCardModule,
-    MatIcon
+    MatIcon,
+    HomeComponent
   ],
 
   // html url
@@ -35,14 +37,7 @@ import { MatIcon } from '@angular/material/icon';
 export class ProductBoxComponent {
   // field
   @Input() fullWidthMode = false;
-  product: ProductModel | undefined = {
-    id: 1,
-    title: "Sneakers",
-    price: 150,
-    category: "shoes",
-    description: "Description",
-    image: "https://via.placeholder.com/150"
-  }
+  @Input () product: ProductModel | undefined 
   // constructor
 
   @Output() addToCart = new EventEmitter()

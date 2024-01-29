@@ -1,11 +1,14 @@
 // Core
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 // CommonModule
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 // services
 import { CartService } from '../../services/cart.service';
+import { StoreService } from '../../services/store.service';
+import { Subscription } from 'rxjs';
 
 // import other components or pages
 import { ProductsHeaderComponent } from './components/products-header/products-header.component';
@@ -39,6 +42,7 @@ const ROWS_HEIGHT: {
   // Imports
   imports: [
     CommonModule,
+    HttpClientModule,
     ProductsHeaderComponent,
     FiltersComponent,
     MatSidenavModule,
@@ -53,7 +57,7 @@ const ROWS_HEIGHT: {
   // Style part
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   // Field
 
     // Variable for dynamic icon sidebar open and close
@@ -62,16 +66,34 @@ export class HomeComponent {
   cols:number = 3;
     // Variable for rowHeight
   rowHeight:number = ROWS_HEIGHT[this.cols]
-  // Variable for dynamic category if it is selected or not selected (undefined)
+    // Variable for dynamic category if it is selected or not selected (undefined)
   category: string | undefined;
+    // Variable for store the data from API
+  products: ProductModel[] | undefined
+  
+  sort:string = "desc";
+  count:string = "12";
+  productsSubscription: Subscription | undefined
+
 
   // Constructor
+  constructor(private cartService: CartService, private storeService: StoreService ){}
 
-  constructor(private cartService: CartService ){}
-
-
-
+  
+  
   // Methods
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts():void{
+    this.productsSubscription = this.storeService.getAllProducts(this.count, this.sort)
+    .subscribe(_products => {
+      this.products = _products;
+    })
+  }
+
     // Method for dynamic icon sidebar open and close
   toggleIcon() {
     this.sideBarIcon = this.sideBarIcon === 'view_headline' ? 'close' : 'view_headline';
@@ -100,4 +122,9 @@ export class HomeComponent {
     })
   }
 
+  ngOnDestroy(): void {
+    if(this.productsSubscription){
+      this.productsSubscription.unsubscribe();
+    }
+  }
 }
