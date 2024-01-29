@@ -4,10 +4,14 @@ import { Component } from '@angular/core';
 // CommonModule
 import { CommonModule } from '@angular/common';
 
+// services
+import { CartService } from '../../services/cart.service';
+
 // import other components or pages
 import { ProductsHeaderComponent } from './components/products-header/products-header.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { ProductBoxComponent } from './components/product-box/product-box.component';
+import { ProductModel } from '../../models/product.model';
 
 
 // import for Mat UI
@@ -63,7 +67,7 @@ export class HomeComponent {
 
   // Constructor
 
-
+  constructor(private cartService: CartService ){}
 
 
 
@@ -85,5 +89,15 @@ export class HomeComponent {
     this.category = newCategory
   }
 
+  // adding cart method with data from child component
+  onAddtoCart(product: ProductModel):void{
+    this.cartService.addToCart({
+      product: product.image,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      id: product.id
+    })
+  }
 
 }
