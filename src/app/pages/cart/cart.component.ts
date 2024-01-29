@@ -78,7 +78,10 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.dataSource = this.cart.items
+    this.cartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      this.dataSource = this.cart.items
+    })
   }
 
   // methods
@@ -87,11 +90,12 @@ export class CartComponent implements OnInit {
     return this.cartService.getTotal(items)
   }
 
+  onClearCart():void{
+    this.cartService.clearCart();
+  }
 
+  onRemoveFromCart(item: CartItem):void{
+    this.cartService.removeFromCart(item)
+  }
 
-  // getTotal(items: Array<CartItem>): number{
-  //   return items
-  //   .map(item => item.price * item.quantity)
-  //   .reduce((acc, item)=> acc + item, 0);
-  // }
 }
