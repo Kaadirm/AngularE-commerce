@@ -1,11 +1,18 @@
 // CORE
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 // Router
 import { RouterLink } from '@angular/router';
 
 // Common
 import { CommonModule } from '@angular/common';
+
+// Models
+import { Cart, CartItem } from '../../models/cart.model';
+
+// Service
+import { CartService } from '../../services/cart.service';
+
 
 // Material imports
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -28,5 +35,32 @@ import {MatMenuModule} from "@angular/material/menu"
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  // field
+  private _cart: Cart = {items: []};
+  itemsQuantity = 0;
 
+  @Input()
+  get cart(): Cart{
+    return this._cart;
+  }
+
+  set cart(cart: Cart){
+    this._cart = cart;
+
+    this.itemsQuantity = cart.items
+    .map(item => item.quantity)
+    .reduce((acc, item) => acc + item, 0);
+  }
+
+  // constructor
+  constructor(private cartService: CartService){}
+
+  // methods
+  getTotal(items: CartItem[]): number{
+    return this.cartService.getTotal(items)
+  }
+
+  onClearCart(){
+    this.cartService.clearCart();
+  }
 }

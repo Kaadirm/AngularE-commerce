@@ -1,5 +1,5 @@
 // CORE
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // COMMON MODULE
 import { CommonModule } from '@angular/common';
@@ -10,23 +10,12 @@ import { RouterOutlet } from '@angular/router';
 // import Components
 import { HeaderComponent } from './components/header/header.component';
 
+// models
+import { Cart } from './models/cart.model';
 
+// services
+import { CartService } from './services/cart.service';
 
-
-// imports for material ui angular that we need later
-// import {MatButtonModule} from '@angular/material/button';
-// MatSidenavModule
-// MatGridListModule
-// MatMenuModule
-// MatButtonModule
-// MatCardModule
-// MatIconModule
-// MatExpansionModule
-// MatListModule
-// MatToolbarModule
-// MatTableModule
-// MatBadgeModule
-// MatSnackBarModule
 
 @Component({
   // Html Selector
@@ -48,14 +37,17 @@ import { HeaderComponent } from './components/header/header.component';
   // Style Url for scss or css files
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'ecommerce';
+export class AppComponent implements OnInit {
   // Field
-
+  cart: Cart = { items: []};
 
   // Constructor
-
+  constructor(private cartService: CartService){}
 
   // Methods
-
+  ngOnInit(): void {
+    this.cartService.cart.subscribe((_cart) => {
+      this.cart = _cart;
+    })
+  }
 }

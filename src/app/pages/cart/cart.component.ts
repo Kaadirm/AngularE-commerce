@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -30,7 +31,7 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   // Field
   // Variables
   // cart
@@ -72,7 +73,7 @@ export class CartComponent {
   ];
 
   // constructor
-  constructo() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -80,11 +81,17 @@ export class CartComponent {
     this.dataSource = this.cart.items
   }
 
-  getTotal(items: Array<CartItem>): number{
-    return items
-    .map(item => item.price * item.quantity)
-    .reduce((acc, item)=> acc + item, 0);
+  // methods
+
+  getTotal(items: CartItem[]): number{
+    return this.cartService.getTotal(items)
   }
 
-  // methods
+
+
+  // getTotal(items: Array<CartItem>): number{
+  //   return items
+  //   .map(item => item.price * item.quantity)
+  //   .reduce((acc, item)=> acc + item, 0);
+  // }
 }
