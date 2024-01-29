@@ -2,28 +2,29 @@
   [autosize]="true"
   class="min-h-full max-w-7x1 mx-auto border-x"
 >
-    <mat-drawer #draw mode="side" closedStart class="p-6" >
-      <app-filters (showCategory)="onShowCategory($event)"></app-filters>
-    </mat-drawer>
-    <mat-drawer-content class="p-6">
-      <button mat-raised-button (click)="draw.toggle(); toggleIcon()"><mat-icon >{{sideBarIcon}}</mat-icon></button>
-      <app-products-header (columnsCountUpdate)="onColumnsCountChange($event)"></app-products-header>
+  <mat-drawer #draw mode="side" closedStart class="p-6">
+    <app-filters (showCategory)="onShowCategory($event)"></app-filters>
+  </mat-drawer>
+  <mat-drawer-content class="p-6">
+    <button mat-raised-button (click)="draw.toggle(); toggleIcon()">
+      <mat-icon>{{ sideBarIcon }}</mat-icon>
+    </button>
+    <app-products-header 
+    (columnsCountUpdate)="onColumnsCountChange($event)"
+    (itemsCountUpdate)="onItemsCountUpdate($event)"
+    (sortUpdate)="onSortUpdate($event)"
+    ></app-products-header>
 
-      <mat-grid-list
-      [cols]="cols"
-      gutterSize="10"
-      [rowHeight]="rowHeight"
-      >
-        <mat-grid-tile *ngFor="let product of products">
-          <app-product-box 
+    <mat-grid-list [cols]="cols" gutterSize="10" [rowHeight]="rowHeight">
+      <mat-grid-tile *ngFor="let product of products">
+        <app-product-box
           [product]="product"
           (addToCart)="onAddtoCart($event)"
-          class="w-full" [fullWidthMode]="cols === 1">
-          </app-product-box>
-        </mat-grid-tile>
-        
-      </mat-grid-list>
-
-    </mat-drawer-content>
-    
+          class="w-full"
+          [fullWidthMode]="cols === 1"
+        >
+        </app-product-box>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-drawer-content>
 </mat-drawer-container>

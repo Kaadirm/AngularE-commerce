@@ -38,6 +38,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class ProductsHeaderComponent {
   // Field
   @Output() columnsCountUpdate = new EventEmitter<number>()
+  @Output() itemsCountUpdate = new EventEmitter<number>()
+  @Output() sortUpdate = new EventEmitter<string>()
 
   // Variables for filters and icons
   sort:string = "descending" 
@@ -47,11 +49,13 @@ export class ProductsHeaderComponent {
   // Methods
   // Sort to ascending and descending
   onSortUpdate(updatedSort: string):void{
+    this.sortUpdate.emit(updatedSort);
     this.sort = updatedSort;
   }
   // Showsize Methods on the screen
   onItemsShow(itemSize: number):void{
-    this.itemsShowCount = itemSize
+    this.itemsCountUpdate.emit(itemSize);
+    this.itemsShowCount = itemSize;
   }
 
   onCardsUpdated(colsNum: number):void{

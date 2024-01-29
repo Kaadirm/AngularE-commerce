@@ -122,6 +122,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
 
+  onItemsCountUpdate(newCount: number):void{
+    this.count = newCount.toString();
+    this.getProducts()
+  }
+
+  onSortUpdate(newSort: string):void{
+    this.sort = newSort;
+    this.getProducts();
+  }
+
   ngOnDestroy(): void {
     if(this.productsSubscription){
       this.productsSubscription.unsubscribe();
