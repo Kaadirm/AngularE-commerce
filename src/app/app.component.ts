@@ -9,6 +9,7 @@ import { RouterOutlet } from '@angular/router';
 
 // import Components
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // models
 import { Cart } from './models/cart.model';
@@ -28,7 +29,8 @@ import { CartService } from './services/cart.service';
   imports: [
     CommonModule, 
     RouterOutlet,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
   ],
 
   // Html Url or string to write

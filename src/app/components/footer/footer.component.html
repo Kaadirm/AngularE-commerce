@@ -1,0 +1,47 @@
+<!-- Footer Section Begin -->
+<footer class="bg-gray-800 text-white py-16 footer-container">
+    <div class="container mx-auto">
+        <div class="mx-auto sm:flex sm:items-center sm:justify-center">
+            <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0 flex text-center sm:text-left ">
+                <p class="text-sm">{{footerMainText}}</p>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/6 px-4 mb-8 md:mb-0 flex flex-col items-center sm:block">
+                <div class="mb-6">
+                    <h6 class="text-sm font-semibold footer-headers">Quick links</h6>
+                </div>
+                <ul class="text-sm flex flex-col items-center sm:block">
+                    <li *ngFor="let item of quickLinks" [class]="item.className"><a [routerLink]="item.link">{{item.text}}</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/6 px-4 mb-8 md:mb-0 flex flex-col items-center sm:block">
+                <div class="mb-6">
+                    <h6 class="text-sm font-semibold footer-headers">Account</h6>
+                </div>
+                <ul class="text-sm flex flex-col items-center sm:block">
+                    <li *ngFor="let item of accountLinks" [class]="item.className"> <a [routerLink]="item.link">{{item.text}}</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0 flex flex-col items-center sm:block">
+                <div class="mb-6">
+                    <h6 class="text-sm font-semibold footer-headers">NEWSLETTER</h6>
+                </div>
+                <form action="#" class="mb-6">
+                    <input type="text" placeholder="Email" class="w-full p-2 border border-gray-300 rounded">
+                    <button type="submit" class="w-full mt-4 py-2 bg-blue-500 text-white rounded">Subscribe</button>
+                </form>
+                <div class="flex text-2xl " >
+                    <span *ngFor="let item of socialIcons">
+                        <a [href]="item.link" [class]="item.class">
+                            <i [class]="item.icon">
+                            </i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8">
+            <p class="text-center text-s">&copy; {{getYear()}} All rights reserved | by <span class="text-blue-500">KadirM</span></p>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

@@ -32,7 +32,7 @@ section {
 p {
   font-style: normal;
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.154px;
   color: #242d60;
@@ -54,7 +54,7 @@ h3,
 h5 {
   font-style: normal;
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.154px;
   color: #242d60;
@@ -68,7 +68,7 @@ button {
   background: #556cd6;
   color: white;
   width: 100%;
-  font-size: 2rem;
+  font-size: 14px;
   border: 0;
   font-weight: 500;
   cursor: pointer;

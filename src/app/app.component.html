@@ -1,12 +1,13 @@
 
-<!-- Header part will be static -->
-<app-header [cart]="cart"></app-header>
+<div class="flex flex-col justify-between min-h-screen">
+    <div>
+        <!-- Header part will be static -->
+        <app-header [cart]="cart"></app-header>
 
-<!-- Dinamic part changes  -->
-<router-outlet></router-outlet>
+        <!-- Dinamic part changes  -->
+        <router-outlet></router-outlet>
+    </div>
 
-
-<!-- Footer will be here -->
-
-
-
+    <!-- Footer will be here -->
+    <app-footer></app-footer>
+</div>
