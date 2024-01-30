@@ -1,6 +1,9 @@
 // CORE
 import { Component, Input } from '@angular/core';
 
+// Component and Pages
+import { NavbarComponent } from '../navbar/navbar.component';
+
 // Router
 import { RouterLink } from '@angular/router';
 
@@ -26,6 +29,7 @@ import {MatMenuModule} from "@angular/material/menu"
   standalone: true,
   imports: [
     CommonModule,
+    NavbarComponent,
     MatToolbarModule,
     MatIconModule,
     MatBadge,

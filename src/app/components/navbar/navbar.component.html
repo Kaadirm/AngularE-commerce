@@ -1,0 +1,40 @@
+<!-- Navbar Section Begin -->
+  <div class="container mx-auto">
+    <div class="hidden md:flex items-center justify-between">
+      <nav class="flex justify-center space-x-4">
+        <ul class="flex items-center gap-0 lg:gap-8 text-sm md:text-base lg:text-lg relative">
+          <li *ngFor="let item of navBarMenu" 
+          [class]="item.className"
+          (mouseenter)="item.isPopUp = true"
+          (mouseleave)="item.isPopUp = false"
+          >
+            <a [routerLink]="item.link">{{ item.text }} </a>
+            <ul *ngIf="item.isPopUp && item.popUpMenu" [ngClass]="{'hidden': !item.isPopUp}" class="absolute flex flex-col gap-4 bg-black text-white z-10 p-3 text-base">
+              <li *ngFor="let menuItems of item.popUpMenu">
+                <div
+                  class=
+                >
+                  <a [routerLink]="menuItems.link">{{ menuItems.text }}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- <div class="flex items-center">
+        <div class="header__right__auth">
+          <a href="#" class="text-white">Login</a>
+          <a href="#" class="text-white ml-4">Register</a>
+        </div>
+        <ul class="header__right__widget flex items-center space-x-4">
+          <li>
+            <span
+              class="icon_search search-switch cursor-pointer text-white"
+            ></span>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+<!-- Navbar Section End -->

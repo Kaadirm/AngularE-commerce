@@ -1,5 +1,11 @@
 <mat-toolbar class="max-w-full mx-auto border-x justify-between">
-  <a routerLink="home">E-commerce Store</a>
+  <a routerLink="home" class="hover:underline">E-commerce Store</a>
+
+
+  <app-navbar></app-navbar>
+
+
+
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon
       [matBadge]="itemsQuantity"
@@ -9,7 +15,7 @@
       >shopping_cart</mat-icon
     >
   </button>
-  <mat-menu #menu="matMenu">
+  <mat-menu #menu="matMenu" >
     <div class="md:p-2 p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">
         <span class="mr-16 sm:mr-32">{{ itemsQuantity }} Items</span>

@@ -4,7 +4,9 @@
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
         <mat-list-option color="primary" *ngFor="let item of categories" [value]="item">
-            <button (click)="onShowCategory(item)" mat-button>{{item}}</button>
+            <button style="font-family: 'Montserrat', sans-serif;
+            text-transform: capitalize;" 
+            (click)="onShowCategory(item)" mat-button>{{item}}</button>
         </mat-list-option>
     </mat-selection-list>
 </mat-expansion-panel>
