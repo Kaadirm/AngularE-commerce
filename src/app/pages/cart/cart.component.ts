@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
 import { CartService } from '../../services/cart.service';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-cart',
@@ -73,7 +75,7 @@ export class CartComponent implements OnInit {
   ];
 
   // constructor
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private http: HttpClient) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -104,5 +106,16 @@ export class CartComponent implements OnInit {
 
   onRemoveQuantity(item: CartItem):void{
     this.cartService.removeQuantity(item)
+  }
+
+  onCheckout():void{
+    this.http.post("http://localhost:4242/checkout", {
+      items: this.cart.items
+    }).subscribe(async(res: any) =>{
+      let stripe = await loadStripe("pk_test_51Oe3BZIeKu5L5nkENZx6YuNe08tvH6OLxYVw33QQfSR1mo87QJNZA7I83iUDyKnb7bm9jLvsJDwDRFQ0ECZloNkD00g6P98824");
+      stripe?.redirectToCheckout({
+        sessionId: res.id
+      })
+    })
   }
 }
