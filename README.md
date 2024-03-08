@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
+![ProjectEcommerce](https://github.com/Kaadirm/AngularProject/assets/141996672/e365854f-b4dd-4783-85f9-26650945f497)
+
+## Demo
+
+Check out the [demo](https://angular-project-bice.vercel.app/home) to see the project in action.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
